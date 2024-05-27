@@ -1,0 +1,24 @@
+name: "cased-deploy-action"
+description: "A GitHub Action to notify Cased about a deployment."
+inputs:
+  organization_id:
+    description: "The Cased organization ID"
+    required: true
+  deployed_at:
+    description: "The deployment timestamp"
+    required: true
+  external_url:
+    description: "The external URL of the deployment"
+    required: false
+  status:
+    description: "The status of the deployment, can be one of: pending, success, failure. default: pending"
+    required: false
+  version:
+    description: "The version of the deployment"
+    required: false
+  name:
+    description: "The name of the deployment"
+    required: false
+runs:
+  using: "docker"
+  image: "Dockerfile"

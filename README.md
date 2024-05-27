@@ -1,1 +1,45 @@
-# cased-deploy-action
+# Cased Deploy Action
+
+This GitHub Action sends a notification to Cased about a deployment.
+
+## Inputs
+
+- `organization_id`: **Required** The Cased organization ID.
+- `deployed_at`: **Required** The deployment timestamp.
+- `external_url`: The external URL of the deployment.
+- `status`: The status of the deployment. Can be one of: pending, success, failure. Default: pending.
+- `version`: The version of the deployment.
+- `name`: The name of the deployment.
+
+## Environment Variables
+
+- `CASED_TOKEN`: **Required** The token used for authentication with the Cased web service.
+
+## Example Usage
+
+```yaml
+name: Notify Deployment
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      
+      - name: Notify deployment
+        uses: your-username/cased-deploy-action@v1
+        env:
+          CASED_TOKEN: ${{ secrets.CASED_TOKEN }}
+        with:
+          organization_id: ${{ secrets.ORGANIZATION_ID }}
+          deployed_at: ${{ github.event.head_commit.timestamp }}
+          external_url: 'https://github.com/your-org/your-repo'
+          status: 'success'
+          version: ${{ github.sha }}
+          name: 'My Deployment'
