@@ -33,7 +33,7 @@ jobs:
         uses: actions/checkout@v2
       
       - name: Notify deployment
-        uses: your-username/cased-deploy-action@v1
+        uses: cased/cased-deploy-action@v1
         env:
           CASED_TOKEN: ${{ secrets.CASED_TOKEN }}
         with:
