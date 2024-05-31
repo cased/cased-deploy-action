@@ -6,7 +6,7 @@ inputs:
     required: true
   deployed_at:
     description: "The deployment timestamp"
-    required: true
+    required: false
   external_url:
     description: "The external URL of the deployment"
     required: false
