@@ -6,7 +6,6 @@ This GitHub Action sends a notification to Cased about a deployment.
 
 - `organization_id`: **Required** The Cased organization ID.
 - `external_url`: The external URL of the deployment.
-- `status`: The status of the deployment. Can be one of: pending, success, failure. Default: pending.
 - `version`: The version of the deployment.
 - `name`: The name of the deployment.
 
@@ -38,6 +37,5 @@ jobs:
         with:
           organization_id: ${{ secrets.ORGANIZATION_ID }}
           external_url: 'https://github.com/your-org/your-repo'
-          status: 'success'
           version: ${{ github.sha }}
           name: 'Example Deployment'
