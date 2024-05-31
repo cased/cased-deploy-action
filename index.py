@@ -5,7 +5,6 @@ import requests
 def main():
     organization_id = os.getenv('INPUT_ORGANIZATION_ID')
     external_url = os.getenv('INPUT_EXTERNAL_URL', None)  # Optional
-    status = os.getenv('INPUT_STATUS', None) # Optional
     version = os.getenv('INPUT_VERSION', None)  # Optional
     name = os.getenv('INPUT_NAME', None)  # Optional
     cased_token = os.getenv('CASED_TOKEN')
@@ -17,7 +16,6 @@ def main():
     data = {
         'organization_id': organization_id,
         'external_url': external_url,
-        'status': status,
         'version': version,
         'name': name
     }
