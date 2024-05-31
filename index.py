@@ -4,7 +4,6 @@ import requests
 
 def main():
     organization_id = os.getenv('INPUT_ORGANIZATION_ID')
-    deployed_at = os.getenv('INPUT_DEPLOYED_AT')
     external_url = os.getenv('INPUT_EXTERNAL_URL', '')  # Optional
     status = os.getenv('INPUT_STATUS', 'pending')  # Default to 'pending'
     version = os.getenv('INPUT_VERSION', '')  # Optional
@@ -17,7 +16,6 @@ def main():
 
     data = {
         'organization_id': organization_id,
-        'deployed_at': deployed_at,
         'external_url': external_url,
         'status': status,
         'version': version,
