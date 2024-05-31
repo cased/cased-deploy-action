@@ -31,7 +31,7 @@ def main():
 
     response = requests.post(f'https://preview.cased.com/api/v1/organizations/{organization_id}/deployments/', json=data, headers=headers)
 
-    if response.status_code == 200:
+    if response.status_code == 201:
         print('Deployment notification sent successfully.')
     else:
         print(f'Failed to send deployment notification: {response.status_code} {response.text}')
