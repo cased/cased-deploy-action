@@ -18,6 +18,7 @@ def main():
         'external_url': external_url,
         'version': version,
         'name': name
+        "repository_name": os.getenv('GITHUB_REPOSITORY'),
     }
 
     headers = {
