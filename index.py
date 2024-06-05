@@ -17,7 +17,7 @@ def main():
         'organization_id': organization_id,
         'external_url': external_url,
         'version': version,
-        'name': name
+        'name': name,
         "repository_name": os.getenv('GITHUB_REPOSITORY'),
     }
 
