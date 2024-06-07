@@ -9,6 +9,8 @@ This GitHub Action sends a notification to Cased about a deployment.
 - `version`: The version of the deployment.
 - `name`: The name of the deployment.
 
+The action will automatically send the commit SHA of the last commit, as well as the repository name.
+
 ## Environment Variables
 
 - `CASED_TOKEN`: **Required** The token used for authentication with the Cased web service.
