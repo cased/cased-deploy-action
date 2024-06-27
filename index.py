@@ -7,6 +7,7 @@ def main():
     external_url = os.getenv('INPUT_EXTERNAL_URL', None)  # Optional
     version = os.getenv('INPUT_VERSION', None)  # Optional
     name = os.getenv('INPUT_NAME', None)  # Optional
+    branch = os.getenv('INPUT_BRANCH', None)  # Optional
     cased_token = os.getenv('CASED_TOKEN')
 
     if not cased_token:
@@ -18,6 +19,7 @@ def main():
         'external_url': external_url,
         'version': version,
         'name': name,
+        'branch': branch,
         'sha': os.getenv('GITHUB_SHA'),
         "repository_name": os.getenv('GITHUB_REPOSITORY'),
     }
