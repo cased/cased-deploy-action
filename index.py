@@ -15,7 +15,7 @@ def main():
         sys.exit(1)
 
     if not branch:
-        branch = os.getenv('GITHUB_BASE_REF')
+        branch = os.getenv('GITHUB_REF_NAME')
 
     data = {
         'organization_id': organization_id,
