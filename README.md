@@ -8,7 +8,7 @@ This GitHub Action sends a notification to Cased about a deployment.
 - `external_url`: The external URL of the deployment.
 - `version`: The version of the deployment.
 - `name`: The name of the deployment.
-- `branch`: The branch of a deployment. Defaults to `GITHUB_BASE_REF` (the target branch of a PR merge) if available.
+- `branch`: The branch of a deployment. Defaults to `GITHUB_REF_NAME` (the branch the triggered the workflow run).
 
 The action will automatically send the commit SHA of the last commit, as well as the repository name.
 
