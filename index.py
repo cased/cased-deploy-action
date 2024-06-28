@@ -14,6 +14,9 @@ def main():
         print('CASED_TOKEN environment variable is not set.')
         sys.exit(1)
 
+    if not branch:
+        branch = os.getenv('GITHUB_BASE_REF')
+
     data = {
         'organization_id': organization_id,
         'external_url': external_url,
