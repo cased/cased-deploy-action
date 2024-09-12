@@ -1,0 +1,21 @@
+name: 'Cased Branch Deploy'
+description: 'Send a branch deploy request to Cased'
+inputs:
+  branch_name:
+    description: 'Name of the branch being deployed'
+    required: false
+    default: 'main'
+  target:
+    description: 'Target environment for the deployment'
+    required: false
+    default: 'prod'
+  trigger:
+    description: 'Trigger for the deployment'
+    required: false
+    default: 'pr_merge'
+  cased_token:
+    description: 'Cased API token'
+    required: true
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
