@@ -13,10 +13,16 @@ def main():
     pr_number = os.getenv('GITHUB_EVENT_PULL_REQUEST_NUMBER')
     trigger = os.getenv('INPUT_TRIGGER', 'pr_merge')
 
+    project_name = os.getenv('GITHUB_REPOSITORY')
+    if not project_name:
+        print('Unable to determine project name from GITHUB_REPOSITORY.')
+        sys.exit(1)
+
     data = {
         'branch_name': branch_name,
         'target_name': target,
-        'trigger': trigger
+        'trigger': trigger,
+        'project_name': project_name
     }
 
     if pr_number:
