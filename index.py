@@ -1,6 +1,32 @@
 import os
 import sys
 import requests
+import json
+
+def get_pr_number():
+    # First try direct PR number env var
+    pr_number = os.getenv('GITHUB_EVENT_PULL_REQUEST_NUMBER')
+    if pr_number:
+        return pr_number
+        
+    # If not found, try to extract from the event payload
+    event_path = os.getenv('GITHUB_EVENT_PATH')
+    if event_path and os.path.exists(event_path):
+        try:
+            with open(event_path, 'r') as f:
+                event_data = json.load(f)
+                # For merge events, PR number is in pull_request.number
+                if 'pull_request' in event_data:
+                    return str(event_data['pull_request']['number'])
+                # For merged PR events, it might be in merge_group.head_ref
+                elif 'merge_group' in event_data:
+                    head_ref = event_data['merge_group']['head_ref']
+                    if head_ref and head_ref.startswith('pull/'):
+                        return head_ref.split('/')[1]
+        except Exception as e:
+            print(f"Error reading event file: {e}")
+    
+    return None
 
 def main():
     cased_token = os.getenv('INPUT_CASED_TOKEN')
@@ -10,8 +36,8 @@ def main():
 
     branch_name = os.getenv('INPUT_BRANCH_NAME', 'main')
     target = os.getenv('INPUT_TARGET', 'prod')
-    pr_number = os.getenv('GITHUB_EVENT_PULL_REQUEST_NUMBER')
     trigger = os.getenv('INPUT_TRIGGER', 'pr_merge')
+    pr_number = get_pr_number()
 
     project_name = os.getenv('GITHUB_REPOSITORY')
     if not project_name:
@@ -27,6 +53,8 @@ def main():
 
     if pr_number:
         data['pr_number'] = pr_number
+    else:
+        print('Warning: Could not determine PR number')
 
     headers = {
         'Authorization': f'Bearer {cased_token}',
@@ -44,3 +72,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+
