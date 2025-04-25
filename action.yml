@@ -16,6 +16,9 @@ inputs:
   cased_token:
     description: 'Cased API token'
     required: true
+  workflow_inputs:
+    description: 'Additional workflow input parameters (as a JSON string)'
+    required: false
 runs:
   using: 'docker'
   image: 'Dockerfile'

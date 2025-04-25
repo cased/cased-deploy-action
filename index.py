@@ -56,6 +56,15 @@ def main():
     else:
         print('Warning: Could not determine PR number')
 
+    workflow_inputs = os.getenv('INPUT_WORKFLOW_INPUTS')
+    if workflow_inputs:
+        try:
+            workflow_inputs_dict = json.loads(workflow_inputs)
+            data['workflow_inputs'] = workflow_inputs_dict
+        except Exception as e:
+            print(f'Invalid JSON for workflow_inputs: {e}')
+            sys.exit(1)
+
     headers = {
         'Authorization': f'Bearer {cased_token}',
         'Content-Type': 'application/json',

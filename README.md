@@ -8,6 +8,7 @@ This GitHub Action requests a branch deploy from [Cased](https://cased.com).
 - `branch_name`: The name of the branch to deploy. Defaults to 'main'.
 - `target`: The target environment for the deployment. Defaults to 'prod'.
 - `trigger`: The trigger for the deployment. Defaults to 'pr_merge'.
+- `workflow_inputs`: (optional, JSON string) Additional workflow input parameters to send to Cased. Example: '{"foo": "bar", "baz": 123}'
 
 The action will automatically send the pull request number if available.
 
@@ -34,3 +35,4 @@ jobs:
           branch_name: ${{ github.event.pull_request.base.ref }}
           target: 'feat/我的新分支'
           cased_token: ${{ secrets.CASED_TOKEN }}
+          workflow_inputs: '{"user_env": "acme", "ranges": "alpha,beta"}'
